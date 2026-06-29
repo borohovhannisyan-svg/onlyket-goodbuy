@@ -12,3 +12,4 @@ Vercel Environment Variables:
 - `RESEND_API_KEY`
 - `RSVP_TO_EMAIL=borohovhannisyan@gmail.com`
 - `RSVP_FROM_EMAIL=Boris Party <party@onlyket.com>`
+Deploy update
