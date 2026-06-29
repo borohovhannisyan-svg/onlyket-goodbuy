@@ -8,18 +8,16 @@
 
   <style>
     :root {
-      --black: #08080a;
+      --black: #070707;
       --white: #ffffff;
-      --paper: #f5f1ef;
-      --soft: #ebe6e3;
-      --muted: rgba(8, 8, 10, .62);
-      --line: rgba(8, 8, 10, .12);
+      --muted: rgba(7, 7, 7, .58);
+      --soft: rgba(7, 7, 7, .08);
+      --line: rgba(7, 7, 7, .12);
       --magenta: #a60063;
       --pink: #ff3ead;
       --orange: #ff9d2e;
-      --yellow: #ffe48a;
-      --green: #2ee6a6;
-      --red: #ff5c9d;
+      --green: #009e68;
+      --red: #d4146d;
     }
 
     * {
@@ -32,8 +30,7 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
-      background: #dedede;
+      background: #ffffff;
       color: var(--black);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
@@ -43,70 +40,77 @@
     }
 
     .page {
-      width: min(1180px, calc(100% - 32px));
-      margin: 72px auto;
-      background: var(--paper);
-      border-radius: 2px;
+      width: 100%;
+      min-height: 100vh;
+      background: #ffffff;
       overflow: hidden;
-      box-shadow: 0 40px 140px rgba(0,0,0,.12);
-      position: relative;
+    }
+
+    .wrap {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
     }
 
     .topbar {
-      height: 78px;
-      padding: 0 52px;
+      height: 82px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      font-size: 12px;
-      letter-spacing: -.02em;
+      align-items: center;
+      font-size: 13px;
+      border-bottom: 1px solid rgba(0,0,0,.06);
     }
 
     .logo {
-      font-weight: 850;
+      font-weight: 900;
+      letter-spacing: -.04em;
     }
 
     .nav {
       display: flex;
-      align-items: center;
-      gap: 26px;
-      color: rgba(8,8,10,.7);
+      gap: 28px;
+      color: var(--muted);
+      font-size: 12px;
     }
 
     .nav a {
       text-decoration: none;
     }
 
-    .top-pill {
+    .top-btn {
       border: 1px solid var(--black);
       border-radius: 999px;
       padding: 10px 16px;
-      font-weight: 750;
       text-decoration: none;
+      font-size: 12px;
+      font-weight: 850;
     }
 
     .hero {
-      min-height: 760px;
-      padding: 54px 52px 40px;
       position: relative;
+      min-height: 760px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      overflow: hidden;
+      padding: 90px 0 130px;
     }
 
     .hero::before {
       content: "";
       position: absolute;
-      left: 0;
-      right: 0;
-      top: 295px;
+      left: 50%;
+      top: 46%;
+      width: min(980px, 96vw);
       height: 360px;
+      transform: translate(-50%, -50%);
       background:
-        radial-gradient(circle at 25% 48%, rgba(166,0,99,.65), transparent 30%),
-        radial-gradient(circle at 52% 42%, rgba(255,62,173,.72), transparent 32%),
-        radial-gradient(circle at 78% 40%, rgba(255,157,46,.72), transparent 32%),
-        linear-gradient(90deg, rgba(255,228,138,.45), rgba(255,62,173,.55), rgba(255,157,46,.50));
-      filter: blur(10px);
-      opacity: .9;
+        radial-gradient(circle at 18% 55%, rgba(166, 0, 99, .50), transparent 30%),
+        radial-gradient(circle at 52% 50%, rgba(255, 62, 173, .62), transparent 34%),
+        radial-gradient(circle at 82% 46%, rgba(255, 157, 46, .58), transparent 32%),
+        linear-gradient(90deg, rgba(255,255,255,0), rgba(255,62,173,.22), rgba(255,157,46,.20), rgba(255,255,255,0));
+      filter: blur(26px);
+      opacity: .78;
+      pointer-events: none;
     }
 
     .hero::after {
@@ -114,43 +118,46 @@
       position: absolute;
       left: 0;
       right: 0;
-      top: 500px;
-      height: 260px;
-      background: linear-gradient(to bottom, transparent, var(--paper) 72%);
+      bottom: 0;
+      height: 240px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0), #fff 70%);
+      pointer-events: none;
     }
 
-    .hero-content {
+    .hero-inner {
       position: relative;
       z-index: 2;
+      max-width: 920px;
+      margin: 0 auto;
     }
 
     .kicker {
       font-family: Georgia, "Times New Roman", serif;
       font-style: italic;
-      font-size: 22px;
-      margin-bottom: 18px;
+      font-size: clamp(20px, 2.1vw, 28px);
+      margin-bottom: 22px;
     }
 
     h1 {
-      max-width: 760px;
       margin: 0 auto;
-      font-size: clamp(54px, 8.4vw, 112px);
-      line-height: .86;
-      letter-spacing: -.075em;
+      max-width: 900px;
+      font-size: clamp(64px, 10vw, 150px);
+      line-height: .84;
+      letter-spacing: -.085em;
       font-weight: 950;
     }
 
     .subtitle {
-      max-width: 620px;
-      margin: 26px auto 0;
+      max-width: 650px;
+      margin: 30px auto 0;
       color: var(--muted);
-      font-size: 17px;
+      font-size: clamp(16px, 1.7vw, 20px);
       line-height: 1.55;
       letter-spacing: -.02em;
     }
 
     .hero-actions {
-      margin-top: 28px;
+      margin-top: 34px;
       display: flex;
       justify-content: center;
       gap: 12px;
@@ -162,13 +169,12 @@
       border-radius: 999px;
       background: transparent;
       color: var(--black);
-      padding: 13px 20px;
-      font-weight: 850;
+      padding: 14px 21px;
+      font-weight: 900;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
       cursor: pointer;
       transition: .2s ease;
     }
@@ -178,64 +184,13 @@
     }
 
     .btn.primary {
-      border-color: transparent;
       background: var(--black);
-      color: white;
-    }
-
-    .hero-object {
-      position: relative;
-      z-index: 2;
-      margin: 110px auto 0;
-      width: min(420px, 80%);
-      aspect-ratio: 1 / 1.18;
-      border-radius: 44px;
-      background:
-        radial-gradient(circle at 35% 25%, #ffffff 0 7%, transparent 8%),
-        radial-gradient(circle at 72% 38%, #ff3ead 0 16%, transparent 18%),
-        radial-gradient(circle at 45% 58%, #a60063 0 20%, transparent 22%),
-        radial-gradient(circle at 65% 70%, #ff9d2e 0 22%, transparent 24%),
-        linear-gradient(135deg, #0c0c10, #3c0028 46%, #ff7b35);
-      box-shadow:
-        0 50px 110px rgba(166,0,99,.22),
-        inset 0 0 0 1px rgba(255,255,255,.28);
-      transform: rotate(-5deg);
-      opacity: .94;
-    }
-
-    .hero-object::before {
-      content: "11 JULY";
-      position: absolute;
-      left: 28px;
-      top: 28px;
-      color: rgba(255,255,255,.82);
-      font-size: 12px;
-      letter-spacing: .18em;
-      font-weight: 850;
-    }
-
-    .hero-object::after {
-      content: "BORIS’ GOODBYE PARTY";
-      position: absolute;
-      left: 28px;
-      bottom: 28px;
-      right: 28px;
-      color: white;
-      font-size: 28px;
-      line-height: .95;
-      letter-spacing: -.06em;
-      font-weight: 950;
-      text-align: left;
+      color: #fff;
     }
 
     .section {
-      padding: 86px 72px;
-      position: relative;
-      background: var(--paper);
-    }
-
-    .section.compact {
-      padding-top: 36px;
+      padding: 90px 0;
+      background: #fff;
     }
 
     .split {
@@ -246,10 +201,10 @@
     }
 
     .big-title {
-      font-size: clamp(48px, 6.3vw, 88px);
-      line-height: .9;
-      letter-spacing: -.075em;
       margin: 0;
+      font-size: clamp(48px, 6.2vw, 92px);
+      line-height: .9;
+      letter-spacing: -.08em;
       font-weight: 950;
     }
 
@@ -263,69 +218,83 @@
     .text {
       color: var(--muted);
       font-size: 18px;
-      line-height: 1.6;
-      margin: 0;
+      line-height: 1.62;
       letter-spacing: -.02em;
+      margin: 0;
     }
 
     .info-grid {
-      margin-top: 56px;
+      margin-top: 62px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
+      gap: 28px;
     }
 
     .info-item {
       border-top: 1px solid var(--line);
-      padding-top: 18px;
+      padding-top: 20px;
     }
 
     .small-label {
       font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: .14em;
-      color: rgba(8,8,10,.45);
-      font-weight: 850;
-      margin-bottom: 10px;
+      letter-spacing: .16em;
+      color: rgba(7,7,7,.42);
+      font-weight: 900;
+      margin-bottom: 12px;
     }
 
     .info-title {
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: -.04em;
-      margin-bottom: 8px;
+      font-size: 22px;
+      line-height: 1.1;
+      font-weight: 950;
+      letter-spacing: -.05em;
+      margin-bottom: 10px;
     }
 
-    .agenda-band {
+    .agenda-section {
+      padding: 96px 0;
+      background: #fff;
+      position: relative;
+    }
+
+    .agenda-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
       background:
-        radial-gradient(circle at 12% 20%, rgba(166,0,99,.86), transparent 26%),
-        radial-gradient(circle at 54% 42%, rgba(255,62,173,.78), transparent 32%),
-        radial-gradient(circle at 87% 32%, rgba(255,157,46,.8), transparent 30%),
-        linear-gradient(120deg, #330024, #d21385 45%, #ff9d2e);
-      color: white;
-      padding: 86px 72px;
+        radial-gradient(circle at 12% 20%, rgba(166,0,99,.18), transparent 28%),
+        radial-gradient(circle at 50% 30%, rgba(255,62,173,.20), transparent 32%),
+        radial-gradient(circle at 88% 12%, rgba(255,157,46,.22), transparent 30%);
+      pointer-events: none;
+    }
+
+    .agenda-inner {
+      position: relative;
+      z-index: 2;
     }
 
     .agenda-head {
       display: flex;
       justify-content: space-between;
-      align-items: end;
-      gap: 32px;
+      align-items: flex-end;
+      gap: 36px;
       margin-bottom: 54px;
     }
 
     .agenda-head h2 {
       margin: 0;
-      font-size: clamp(46px, 6vw, 84px);
-      line-height: .9;
-      letter-spacing: -.075em;
+      font-size: clamp(54px, 7vw, 108px);
+      line-height: .85;
+      letter-spacing: -.085em;
+      font-weight: 950;
     }
 
     .agenda-note {
-      max-width: 340px;
-      color: rgba(255,255,255,.76);
+      max-width: 360px;
+      color: var(--muted);
       line-height: 1.55;
-      font-size: 16px;
+      font-size: 17px;
     }
 
     .agenda {
@@ -335,77 +304,72 @@
     }
 
     .agenda-item {
-      min-height: 210px;
-      padding: 24px;
-      border-radius: 30px;
-      background: rgba(255,255,255,.14);
-      border: 1px solid rgba(255,255,255,.22);
-      backdrop-filter: blur(20px);
+      border-top: 1px solid var(--line);
+      padding-top: 22px;
+      min-height: 190px;
     }
 
     .time {
-      font-size: 32px;
+      font-size: 36px;
       line-height: .9;
-      letter-spacing: -.06em;
+      letter-spacing: -.065em;
       font-weight: 950;
       margin-bottom: 28px;
+      color: var(--magenta);
     }
 
     .agenda-title {
       font-size: 20px;
-      font-weight: 900;
-      letter-spacing: -.04em;
+      line-height: 1.1;
+      font-weight: 950;
+      letter-spacing: -.05em;
       margin-bottom: 10px;
     }
 
     .agenda-text {
-      color: rgba(255,255,255,.73);
-      line-height: 1.45;
+      color: var(--muted);
+      line-height: 1.48;
       font-size: 15px;
     }
 
     .rsvp-section {
-      padding: 96px 72px;
+      padding: 100px 0 110px;
       background: #fff;
     }
 
     .rsvp-layout {
       display: grid;
-      grid-template-columns: .86fr 1.14fr;
-      gap: 70px;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 76px;
       align-items: start;
     }
 
     .rsvp-title {
       margin: 0;
-      font-size: clamp(48px, 6.4vw, 92px);
-      line-height: .88;
-      letter-spacing: -.075em;
+      font-size: clamp(52px, 6.7vw, 98px);
+      line-height: .86;
+      letter-spacing: -.085em;
       font-weight: 950;
     }
 
     .rsvp-copy {
       margin-top: 24px;
-      max-width: 360px;
+      max-width: 380px;
       color: var(--muted);
       line-height: 1.58;
       font-size: 17px;
     }
 
     form {
-      border: 1px solid var(--line);
-      border-radius: 38px;
-      padding: 34px;
-      background:
-        radial-gradient(circle at 10% 0%, rgba(255,62,173,.16), transparent 34%),
-        linear-gradient(180deg, #fff, #fbf7f9);
+      border-top: 1px solid var(--line);
+      padding-top: 30px;
     }
 
     .choice-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin-bottom: 26px;
+      margin-bottom: 28px;
     }
 
     .choice input {
@@ -417,8 +381,8 @@
       border: 1px solid var(--line);
       border-radius: 999px;
       padding: 18px 20px;
-      font-weight: 900;
-      color: rgba(8,8,10,.72);
+      font-weight: 950;
+      color: rgba(7,7,7,.68);
       cursor: pointer;
       transition: .18s ease;
       text-align: center;
@@ -428,17 +392,16 @@
       background: var(--black);
       color: #fff;
       border-color: var(--black);
-      box-shadow: 0 18px 46px rgba(0,0,0,.14);
     }
 
     label.field-label {
       display: block;
-      margin: 20px 0 8px;
+      margin: 22px 0 8px;
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: .16em;
       font-weight: 900;
-      color: rgba(8,8,10,.48);
+      color: rgba(7,7,7,.45);
     }
 
     input[type="text"],
@@ -447,15 +410,15 @@
       border: 1px solid var(--line);
       background: #fff;
       color: var(--black);
-      border-radius: 22px;
+      border-radius: 18px;
       padding: 18px 18px;
       outline: none;
       font-size: 18px;
-      font-weight: 700;
+      font-weight: 750;
     }
 
     input:focus {
-      border-color: rgba(166,0,99,.46);
+      border-color: rgba(166,0,99,.55);
       box-shadow: 0 0 0 5px rgba(166,0,99,.08);
     }
 
@@ -477,7 +440,7 @@
       font-weight: 950;
       font-size: 16px;
       cursor: pointer;
-      box-shadow: 0 22px 55px rgba(166,0,99,.25);
+      box-shadow: 0 22px 55px rgba(166,0,99,.18);
       transition: .2s ease;
     }
 
@@ -489,36 +452,30 @@
     .status {
       min-height: 24px;
       font-weight: 850;
-      color: rgba(8,8,10,.58);
+      color: rgba(7,7,7,.58);
     }
 
     .status.ok {
-      color: #009e68;
+      color: var(--green);
     }
 
     .status.err {
-      color: #d4146d;
+      color: var(--red);
     }
 
     .footer {
-      padding: 48px 72px;
-      background: #fff;
-      border-top: 1px solid var(--line);
+      border-top: 1px solid rgba(0,0,0,.06);
+      padding: 44px 0;
+      color: rgba(7,7,7,.55);
+      font-size: 14px;
       display: flex;
       justify-content: space-between;
       gap: 24px;
-      color: rgba(8,8,10,.58);
-      font-size: 14px;
     }
 
     @media (max-width: 900px) {
-      .page {
-        margin: 0;
-        width: 100%;
-      }
-
-      .topbar {
-        padding: 0 24px;
+      .wrap {
+        width: min(100% - 28px, 1180px);
       }
 
       .nav {
@@ -526,30 +483,18 @@
       }
 
       .hero {
-        padding: 42px 24px 32px;
-        min-height: auto;
+        min-height: 680px;
+        padding: 70px 0 110px;
       }
 
-      .hero::before {
-        top: 290px;
-      }
-
-      .hero-object {
-        margin-top: 80px;
-      }
-
-      .section,
-      .agenda-band,
-      .rsvp-section,
-      .footer {
-        padding-left: 24px;
-        padding-right: 24px;
+      h1 {
+        font-size: 72px;
       }
 
       .split,
       .rsvp-layout {
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 36px;
       }
 
       .info-grid {
@@ -574,6 +519,15 @@
         height: 68px;
       }
 
+      .top-btn {
+        padding: 9px 12px;
+      }
+
+      .hero {
+        min-height: 610px;
+        padding-top: 64px;
+      }
+
       h1 {
         font-size: 58px;
       }
@@ -586,9 +540,10 @@
         font-size: 15px;
       }
 
-      .hero-object {
-        width: 86%;
-        border-radius: 34px;
+      .section,
+      .agenda-section,
+      .rsvp-section {
+        padding: 68px 0;
       }
 
       .agenda {
@@ -597,11 +552,6 @@
 
       .choice-grid {
         grid-template-columns: 1fr;
-      }
-
-      form {
-        padding: 22px;
-        border-radius: 28px;
       }
 
       .footer {
@@ -617,146 +567,160 @@
 
 <body>
   <main class="page">
-    <header class="topbar">
-      <div class="logo">Boris</div>
-      <nav class="nav">
-        <a href="#details">Details</a>
-        <a href="#agenda">Agenda</a>
-        <a href="#rsvp">RSVP</a>
-      </nav>
-      <a class="top-pill" href="#rsvp">Confirm RSVP →</a>
-    </header>
+    <div class="wrap">
+      <header class="topbar">
+        <div class="logo">Boris</div>
+
+        <nav class="nav">
+          <a href="#details">Details</a>
+          <a href="#agenda">Agenda</a>
+          <a href="#rsvp">RSVP</a>
+        </nav>
+
+        <a class="top-btn" href="#rsvp">Confirm RSVP →</a>
+      </header>
+    </div>
 
     <section class="hero">
-      <div class="hero-content">
-        <div class="kicker">One last evening together.</div>
-        <h1>Boris' Goodbye Party</h1>
-        <p class="subtitle">
-          Dear colleague, it was a pleasure working with you and your team.
-          Before I start my next chapter, I’d love to spend one more evening together.
-        </p>
+      <div class="wrap">
+        <div class="hero-inner">
+          <div class="kicker">One last evening together.</div>
 
-        <div class="hero-actions">
-          <a class="btn primary" href="#rsvp">I’ll be there →</a>
-          <a class="btn" target="_blank" rel="noopener" href="https://maps.app.goo.gl/15FCkioxfqqfFuEVA">Open map</a>
-        </div>
-      </div>
+          <h1>Boris' Goodbye Party</h1>
 
-      <div class="hero-object" aria-hidden="true"></div>
-    </section>
+          <p class="subtitle">
+            Dear colleague, it was a pleasure working with you and your team.
+            Before I start my next chapter, I’d love to spend one more evening together.
+          </p>
 
-    <section class="section compact" id="details">
-      <div class="split">
-        <h2 class="big-title">
-          Come for the pool,<br>
-          stay for the <span class="italic">goodbye.</span>
-        </h2>
-
-        <p class="text">
-          No speeches. No formalities. Just good people, food, drinks, music and a great time.
-          Come, swim, drink, eat, dance and chill. Guests are welcome.
-        </p>
-      </div>
-
-      <div class="info-grid">
-        <div class="info-item">
-          <div class="small-label">Date</div>
-          <div class="info-title">Saturday, July 11, 2026</div>
-          <div class="text">Start at 16:00</div>
-        </div>
-
-        <div class="info-item">
-          <div class="small-label">Location</div>
-          <div class="info-title">Pool House</div>
-          <div class="text">Vagharshapat</div>
-        </div>
-
-        <div class="info-item">
-          <div class="small-label">Map</div>
-          <div class="info-title">
-            <a target="_blank" rel="noopener" href="https://maps.app.goo.gl/15FCkioxfqqfFuEVA">Open in Google Maps →</a>
+          <div class="hero-actions">
+            <a class="btn primary" href="#rsvp">I’ll be there →</a>
+            <a class="btn" target="_blank" rel="noopener" href="https://maps.app.goo.gl/15FCkioxfqqfFuEVA">Open map</a>
           </div>
-          <div class="text">Tap and drive.</div>
         </div>
       </div>
     </section>
 
-    <section class="agenda-band" id="agenda">
-      <div class="agenda-head">
-        <h2>Agenda</h2>
-        <div class="agenda-note">
-          Pool, BBQ, cocktails, DJ and one last toast before the next chapter.
+    <section class="section" id="details">
+      <div class="wrap">
+        <div class="split">
+          <h2 class="big-title">
+            Come for the pool,<br>
+            stay for the <span class="italic">goodbye.</span>
+          </h2>
+
+          <p class="text">
+            No speeches. No formalities. Just good people, food, drinks, music and a great time.
+            Come, swim, drink, eat, dance and chill. Guests are welcome.
+          </p>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="small-label">Date</div>
+            <div class="info-title">Saturday, July 11, 2026</div>
+            <div class="text">Start at 16:00</div>
+          </div>
+
+          <div class="info-item">
+            <div class="small-label">Location</div>
+            <div class="info-title">Pool House</div>
+            <div class="text">Vagharshapat</div>
+          </div>
+
+          <div class="info-item">
+            <div class="small-label">Map</div>
+            <div class="info-title">
+              <a target="_blank" rel="noopener" href="https://maps.app.goo.gl/15FCkioxfqqfFuEVA">Open in Google Maps →</a>
+            </div>
+            <div class="text">Tap and drive.</div>
+          </div>
         </div>
       </div>
+    </section>
 
-      <div class="agenda">
-        <div class="agenda-item">
-          <div class="time">16:00</div>
-          <div class="agenda-title">Start at the pool</div>
-          <div class="agenda-text">Beer, BBQ, swimming, sun and chill.</div>
+    <section class="agenda-section" id="agenda">
+      <div class="wrap agenda-inner">
+        <div class="agenda-head">
+          <h2>Agenda</h2>
+          <div class="agenda-note">
+            Pool, BBQ, cocktails, DJ and one last toast before the next chapter.
+          </div>
         </div>
 
-        <div class="agenda-item">
-          <div class="time">18:30</div>
-          <div class="agenda-title">Welcome drinks</div>
-          <div class="agenda-text">Cocktails and good mood.</div>
-        </div>
+        <div class="agenda">
+          <div class="agenda-item">
+            <div class="time">16:00</div>
+            <div class="agenda-title">Start at the pool</div>
+            <div class="agenda-text">Beer, BBQ, swimming, sun and chill.</div>
+          </div>
 
-        <div class="agenda-item">
-          <div class="time">19:00</div>
-          <div class="agenda-title">DJ set</div>
-          <div class="agenda-text">Music, dancing and the proper goodbye vibe.</div>
-        </div>
+          <div class="agenda-item">
+            <div class="time">18:30</div>
+            <div class="agenda-title">Welcome drinks</div>
+            <div class="agenda-text">Cocktails and good mood.</div>
+          </div>
 
-        <div class="agenda-item">
-          <div class="time">23:30</div>
-          <div class="agenda-title">Finish</div>
-          <div class="agenda-text">One last toast and see you soon.</div>
+          <div class="agenda-item">
+            <div class="time">19:00</div>
+            <div class="agenda-title">DJ set</div>
+            <div class="agenda-text">Music, dancing and the proper goodbye vibe.</div>
+          </div>
+
+          <div class="agenda-item">
+            <div class="time">23:30</div>
+            <div class="agenda-title">Finish</div>
+            <div class="agenda-text">One last toast and see you soon.</div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="rsvp-section" id="rsvp">
-      <div class="rsvp-layout">
-        <div>
-          <h2 class="rsvp-title">Will you join?</h2>
-          <p class="rsvp-copy">
-            Choose yes or no, write your name and number of guests.
-            Your answer goes directly to Boris.
-          </p>
+      <div class="wrap">
+        <div class="rsvp-layout">
+          <div>
+            <h2 class="rsvp-title">Will you join?</h2>
+            <p class="rsvp-copy">
+              Choose yes or no, write your name and number of guests.
+              Your answer goes directly to Boris.
+            </p>
+          </div>
+
+          <form id="rsvpForm">
+            <div class="choice-grid">
+              <label class="choice">
+                <input type="radio" name="status" value="Coming" checked>
+                <span>Yes, I'll be there</span>
+              </label>
+
+              <label class="choice">
+                <input type="radio" name="status" value="Not coming">
+                <span>Sorry, I can't make it</span>
+              </label>
+            </div>
+
+            <label class="field-label" for="name">Your name</label>
+            <input id="name" name="name" type="text" placeholder="Name Surname" required />
+
+            <label class="field-label" for="guests">Number of guests</label>
+            <input id="guests" name="guests" type="number" min="0" max="20" value="1" required />
+
+            <div class="submit-row">
+              <button type="submit" id="submitBtn">Submit RSVP</button>
+              <div id="status" class="status"></div>
+            </div>
+          </form>
         </div>
-
-        <form id="rsvpForm">
-          <div class="choice-grid">
-            <label class="choice">
-              <input type="radio" name="status" value="Coming" checked>
-              <span>Yes, I'll be there</span>
-            </label>
-
-            <label class="choice">
-              <input type="radio" name="status" value="Not coming">
-              <span>Sorry, I can't make it</span>
-            </label>
-          </div>
-
-          <label class="field-label" for="name">Your name</label>
-          <input id="name" name="name" type="text" placeholder="Name Surname" required />
-
-          <label class="field-label" for="guests">Number of guests</label>
-          <input id="guests" name="guests" type="number" min="0" max="20" value="1" required />
-
-          <div class="submit-row">
-            <button type="submit" id="submitBtn">Submit RSVP</button>
-            <div id="status" class="status"></div>
-          </div>
-        </form>
       </div>
     </section>
 
-    <footer class="footer">
-      <div>Thank you for being part of this journey.</div>
-      <div>See you on July 11.</div>
-    </footer>
+    <div class="wrap">
+      <footer class="footer">
+        <div>Thank you for being part of this journey.</div>
+        <div>See you on July 11.</div>
+      </footer>
+    </div>
   </main>
 
   <script>
