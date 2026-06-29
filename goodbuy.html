@@ -5,334 +5,758 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Boris' Goodbye Party</title>
   <meta name="description" content="Boris' Goodbye Party invitation" />
+
   <style>
     :root {
+      --black: #08080a;
+      --white: #ffffff;
+      --paper: #f5f1ef;
+      --soft: #ebe6e3;
+      --muted: rgba(8, 8, 10, .62);
+      --line: rgba(8, 8, 10, .12);
       --magenta: #a60063;
-      --magenta-2: #ff3ead;
-      --dark: #07070b;
-      --panel: rgba(255,255,255,.075);
-      --line: rgba(255,255,255,.16);
-      --text: #f8f7fb;
-      --muted: rgba(248,247,251,.68);
-      --good: #77ffd8;
-      --bad: #ff8fb8;
+      --pink: #ff3ead;
+      --orange: #ff9d2e;
+      --yellow: #ffe48a;
+      --green: #2ee6a6;
+      --red: #ff5c9d;
     }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 15% 10%, rgba(166,0,99,.68), transparent 32rem),
-        radial-gradient(circle at 84% 20%, rgba(255,62,173,.30), transparent 24rem),
-        radial-gradient(circle at 55% 92%, rgba(166,0,99,.34), transparent 30rem),
-        linear-gradient(135deg, #030306 0%, #08070d 48%, #13000c 100%);
+      background: #dedede;
+      color: var(--black);
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      overflow-x: hidden;
     }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(circle at center, black, transparent 78%);
+
+    a {
+      color: inherit;
     }
-    .glow-line {
-      position: fixed;
-      width: 62vw;
-      height: 1px;
-      left: -10vw;
-      top: 22vh;
-      background: linear-gradient(90deg, transparent, rgba(255,62,173,.82), transparent);
-      transform: rotate(-12deg);
-      filter: blur(.2px);
-      opacity: .55;
-      pointer-events: none;
-    }
-    .glow-line.two { left: 45vw; top: 76vh; transform: rotate(-18deg); opacity: .35; }
-    .wrap {
-      width: min(1120px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 38px 0 42px;
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 72px auto;
+      background: var(--paper);
+      border-radius: 2px;
+      overflow: hidden;
+      box-shadow: 0 40px 140px rgba(0,0,0,.12);
       position: relative;
     }
+
     .topbar {
+      height: 78px;
+      padding: 0 52px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      padding: 12px 0 42px;
-      color: var(--muted);
-      font-size: 13px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-    .brand-dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: var(--magenta);
-      box-shadow: 0 0 28px var(--magenta-2);
-      display: inline-block;
-      margin-right: 10px;
-      vertical-align: -1px;
-    }
-    .hero {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 28px;
-      align-items: stretch;
-    }
-    .card {
-      border: 1px solid var(--line);
-      background: linear-gradient(140deg, rgba(255,255,255,.10), rgba(255,255,255,.045));
-      box-shadow: 0 28px 100px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.12);
-      backdrop-filter: blur(22px);
-      border-radius: 34px;
-    }
-    .main-card { padding: clamp(28px, 5vw, 58px); min-height: 680px; }
-    .eyebrow {
-      color: var(--magenta-2);
-      font-weight: 800;
-      letter-spacing: .22em;
-      text-transform: uppercase;
+      justify-content: space-between;
       font-size: 12px;
+      letter-spacing: -.02em;
+    }
+
+    .logo {
+      font-weight: 850;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: rgba(8,8,10,.7);
+    }
+
+    .nav a {
+      text-decoration: none;
+    }
+
+    .top-pill {
+      border: 1px solid var(--black);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .hero {
+      min-height: 760px;
+      padding: 54px 52px 40px;
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 295px;
+      height: 360px;
+      background:
+        radial-gradient(circle at 25% 48%, rgba(166,0,99,.65), transparent 30%),
+        radial-gradient(circle at 52% 42%, rgba(255,62,173,.72), transparent 32%),
+        radial-gradient(circle at 78% 40%, rgba(255,157,46,.72), transparent 32%),
+        linear-gradient(90deg, rgba(255,228,138,.45), rgba(255,62,173,.55), rgba(255,157,46,.50));
+      filter: blur(10px);
+      opacity: .9;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 500px;
+      height: 260px;
+      background: linear-gradient(to bottom, transparent, var(--paper) 72%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .kicker {
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-size: 22px;
       margin-bottom: 18px;
     }
+
     h1 {
-      font-size: clamp(46px, 9vw, 104px);
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: clamp(54px, 8.4vw, 112px);
+      line-height: .86;
+      letter-spacing: -.075em;
+      font-weight: 950;
+    }
+
+    .subtitle {
+      max-width: 620px;
+      margin: 26px auto 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.55;
+      letter-spacing: -.02em;
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 1px solid var(--black);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--black);
+      padding: 13px 20px;
+      font-weight: 850;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn.primary {
+      border-color: transparent;
+      background: var(--black);
+      color: white;
+    }
+
+    .hero-object {
+      position: relative;
+      z-index: 2;
+      margin: 110px auto 0;
+      width: min(420px, 80%);
+      aspect-ratio: 1 / 1.18;
+      border-radius: 44px;
+      background:
+        radial-gradient(circle at 35% 25%, #ffffff 0 7%, transparent 8%),
+        radial-gradient(circle at 72% 38%, #ff3ead 0 16%, transparent 18%),
+        radial-gradient(circle at 45% 58%, #a60063 0 20%, transparent 22%),
+        radial-gradient(circle at 65% 70%, #ff9d2e 0 22%, transparent 24%),
+        linear-gradient(135deg, #0c0c10, #3c0028 46%, #ff7b35);
+      box-shadow:
+        0 50px 110px rgba(166,0,99,.22),
+        inset 0 0 0 1px rgba(255,255,255,.28);
+      transform: rotate(-5deg);
+      opacity: .94;
+    }
+
+    .hero-object::before {
+      content: "11 JULY";
+      position: absolute;
+      left: 28px;
+      top: 28px;
+      color: rgba(255,255,255,.82);
+      font-size: 12px;
+      letter-spacing: .18em;
+      font-weight: 850;
+    }
+
+    .hero-object::after {
+      content: "BORIS’ GOODBYE PARTY";
+      position: absolute;
+      left: 28px;
+      bottom: 28px;
+      right: 28px;
+      color: white;
+      font-size: 28px;
+      line-height: .95;
+      letter-spacing: -.06em;
+      font-weight: 950;
+      text-align: left;
+    }
+
+    .section {
+      padding: 86px 72px;
+      position: relative;
+      background: var(--paper);
+    }
+
+    .section.compact {
+      padding-top: 36px;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 90px;
+      align-items: start;
+    }
+
+    .big-title {
+      font-size: clamp(48px, 6.3vw, 88px);
+      line-height: .9;
+      letter-spacing: -.075em;
+      margin: 0;
+      font-weight: 950;
+    }
+
+    .italic {
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: -.07em;
+    }
+
+    .text {
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+      margin: 0;
+      letter-spacing: -.02em;
+    }
+
+    .info-grid {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .info-item {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+
+    .small-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: rgba(8,8,10,.45);
+      font-weight: 850;
+      margin-bottom: 10px;
+    }
+
+    .info-title {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      margin-bottom: 8px;
+    }
+
+    .agenda-band {
+      background:
+        radial-gradient(circle at 12% 20%, rgba(166,0,99,.86), transparent 26%),
+        radial-gradient(circle at 54% 42%, rgba(255,62,173,.78), transparent 32%),
+        radial-gradient(circle at 87% 32%, rgba(255,157,46,.8), transparent 30%),
+        linear-gradient(120deg, #330024, #d21385 45%, #ff9d2e);
+      color: white;
+      padding: 86px 72px;
+    }
+
+    .agenda-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 32px;
+      margin-bottom: 54px;
+    }
+
+    .agenda-head h2 {
+      margin: 0;
+      font-size: clamp(46px, 6vw, 84px);
+      line-height: .9;
+      letter-spacing: -.075em;
+    }
+
+    .agenda-note {
+      max-width: 340px;
+      color: rgba(255,255,255,.76);
+      line-height: 1.55;
+      font-size: 16px;
+    }
+
+    .agenda {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .agenda-item {
+      min-height: 210px;
+      padding: 24px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.22);
+      backdrop-filter: blur(20px);
+    }
+
+    .time {
+      font-size: 32px;
+      line-height: .9;
+      letter-spacing: -.06em;
+      font-weight: 950;
+      margin-bottom: 28px;
+    }
+
+    .agenda-title {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -.04em;
+      margin-bottom: 10px;
+    }
+
+    .agenda-text {
+      color: rgba(255,255,255,.73);
+      line-height: 1.45;
+      font-size: 15px;
+    }
+
+    .rsvp-section {
+      padding: 96px 72px;
+      background: #fff;
+    }
+
+    .rsvp-layout {
+      display: grid;
+      grid-template-columns: .86fr 1.14fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .rsvp-title {
+      margin: 0;
+      font-size: clamp(48px, 6.4vw, 92px);
       line-height: .88;
       letter-spacing: -.075em;
-      margin: 0 0 22px;
-      max-width: 820px;
+      font-weight: 950;
     }
-    .lead {
-      max-width: 650px;
-      color: rgba(248,247,251,.78);
-      font-size: clamp(17px, 2.1vw, 22px);
-      line-height: 1.45;
-      margin: 0 0 34px;
-    }
-    .date-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 34px 0 0;
-    }
-    .pill {
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.075);
-      border-radius: 999px;
-      padding: 12px 16px;
-      color: rgba(255,255,255,.88);
-      font-weight: 700;
-    }
-    .pill.magenta {
-      background: linear-gradient(135deg, rgba(166,0,99,.92), rgba(255,62,173,.55));
-      box-shadow: 0 0 34px rgba(166,0,99,.38);
-      border-color: rgba(255,255,255,.20);
-    }
-    .side { display: grid; gap: 18px; }
-    .info-card { padding: 26px; }
-    .label {
+
+    .rsvp-copy {
+      margin-top: 24px;
+      max-width: 360px;
       color: var(--muted);
+      line-height: 1.58;
+      font-size: 17px;
+    }
+
+    form {
+      border: 1px solid var(--line);
+      border-radius: 38px;
+      padding: 34px;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(255,62,173,.16), transparent 34%),
+        linear-gradient(180deg, #fff, #fbf7f9);
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .choice input {
+      display: none;
+    }
+
+    .choice span {
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 18px 20px;
+      font-weight: 900;
+      color: rgba(8,8,10,.72);
+      cursor: pointer;
+      transition: .18s ease;
+      text-align: center;
+    }
+
+    .choice input:checked + span {
+      background: var(--black);
+      color: #fff;
+      border-color: var(--black);
+      box-shadow: 0 18px 46px rgba(0,0,0,.14);
+    }
+
+    label.field-label {
+      display: block;
+      margin: 20px 0 8px;
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: .16em;
-      margin-bottom: 10px;
+      font-weight: 900;
+      color: rgba(8,8,10,.48);
     }
-    .big { font-size: 28px; line-height: 1.05; font-weight: 850; letter-spacing: -.035em; margin: 0; }
-    .muted { color: var(--muted); line-height: 1.55; }
-    .button, button {
-      appearance: none;
-      border: 0;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      border-radius: 999px;
-      padding: 15px 20px;
-      color: #fff;
-      font-weight: 850;
-      background: linear-gradient(135deg, var(--magenta), #db168c);
-      box-shadow: 0 18px 50px rgba(166,0,99,.35);
-      transition: transform .2s ease, filter .2s ease, opacity .2s ease;
-    }
-    .button:hover, button:hover { transform: translateY(-2px); filter: brightness(1.08); }
-    .button.secondary {
-      background: rgba(255,255,255,.075);
-      border: 1px solid rgba(255,255,255,.16);
-      box-shadow: none;
-    }
-    .agenda {
-      margin-top: 28px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-    .agenda-item { padding: 20px; min-height: 156px; }
-    .time { color: var(--magenta-2); font-weight: 900; font-size: 22px; margin-bottom: 14px; }
-    .agenda-title { font-size: 18px; font-weight: 850; margin-bottom: 8px; }
-    .rsvp {
-      margin-top: 28px;
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-    .form-card { padding: 28px; }
-    .choice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 18px 0; }
-    .choice input { display: none; }
-    .choice span {
-      display: block;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.07);
-      border-radius: 18px;
-      padding: 15px 16px;
-      font-weight: 800;
-      color: rgba(255,255,255,.86);
-      transition: .18s ease;
-    }
-    .choice input:checked + span {
-      border-color: rgba(255,62,173,.88);
-      background: rgba(166,0,99,.35);
-      box-shadow: 0 0 28px rgba(166,0,99,.25);
-      color: #fff;
-    }
-    input[type="text"], input[type="number"] {
+
+    input[type="text"],
+    input[type="number"] {
       width: 100%;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(2,2,8,.42);
-      color: #fff;
-      border-radius: 18px;
-      padding: 16px 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--black);
+      border-radius: 22px;
+      padding: 18px 18px;
       outline: none;
-      font-size: 16px;
-      margin: 8px 0 15px;
+      font-size: 18px;
+      font-weight: 700;
     }
-    input:focus { border-color: rgba(255,62,173,.86); box-shadow: 0 0 0 4px rgba(166,0,99,.18); }
-    .submit-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-top: 4px; }
-    .status { min-height: 24px; color: var(--muted); font-weight: 700; }
-    .status.ok { color: var(--good); }
-    .status.err { color: var(--bad); }
+
+    input:focus {
+      border-color: rgba(166,0,99,.46);
+      box-shadow: 0 0 0 5px rgba(166,0,99,.08);
+    }
+
+    .submit-row {
+      margin-top: 28px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      min-width: 190px;
+      border: 0;
+      border-radius: 999px;
+      padding: 18px 24px;
+      background: linear-gradient(135deg, var(--magenta), var(--pink));
+      color: white;
+      font-weight: 950;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 22px 55px rgba(166,0,99,.25);
+      transition: .2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    .status {
+      min-height: 24px;
+      font-weight: 850;
+      color: rgba(8,8,10,.58);
+    }
+
+    .status.ok {
+      color: #009e68;
+    }
+
+    .status.err {
+      color: #d4146d;
+    }
+
     .footer {
-      text-align: center;
-      color: var(--muted);
-      padding: 38px 0 0;
+      padding: 48px 72px;
+      background: #fff;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      color: rgba(8,8,10,.58);
       font-size: 14px;
     }
+
     @media (max-width: 900px) {
-      .hero, .rsvp { grid-template-columns: 1fr; }
-      .agenda { grid-template-columns: repeat(2, 1fr); }
-      .main-card { min-height: auto; }
+      .page {
+        margin: 0;
+        width: 100%;
+      }
+
+      .topbar {
+        padding: 0 24px;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 42px 24px 32px;
+        min-height: auto;
+      }
+
+      .hero::before {
+        top: 290px;
+      }
+
+      .hero-object {
+        margin-top: 80px;
+      }
+
+      .section,
+      .agenda-band,
+      .rsvp-section,
+      .footer {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      .split,
+      .rsvp-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .agenda-head {
+        display: block;
+      }
+
+      .agenda-note {
+        margin-top: 18px;
+      }
+
+      .agenda {
+        grid-template-columns: 1fr 1fr;
+      }
     }
+
     @media (max-width: 560px) {
-      .wrap { width: min(100% - 22px, 1120px); padding-top: 22px; }
-      .topbar { padding-bottom: 24px; align-items: flex-start; flex-direction: column; }
-      .main-card, .info-card, .form-card { border-radius: 26px; padding: 22px; }
-      .agenda, .choice-grid { grid-template-columns: 1fr; }
-      h1 { font-size: 54px; }
+      .topbar {
+        height: 68px;
+      }
+
+      h1 {
+        font-size: 58px;
+      }
+
+      .kicker {
+        font-size: 18px;
+      }
+
+      .subtitle {
+        font-size: 15px;
+      }
+
+      .hero-object {
+        width: 86%;
+        border-radius: 34px;
+      }
+
+      .agenda {
+        grid-template-columns: 1fr;
+      }
+
+      .choice-grid {
+        grid-template-columns: 1fr;
+      }
+
+      form {
+        padding: 22px;
+        border-radius: 28px;
+      }
+
+      .footer {
+        display: block;
+      }
+
+      .footer div + div {
+        margin-top: 8px;
+      }
     }
   </style>
 </head>
-<body>
-  <div class="glow-line"></div>
-  <div class="glow-line two"></div>
 
-  <main class="wrap">
-    <div class="topbar">
-      <div><span class="brand-dot"></span>SoftConstruct style / private invitation</div>
-      <div>July 11, 2026</div>
-    </div>
+<body>
+  <main class="page">
+    <header class="topbar">
+      <div class="logo">Boris</div>
+      <nav class="nav">
+        <a href="#details">Details</a>
+        <a href="#agenda">Agenda</a>
+        <a href="#rsvp">RSVP</a>
+      </nav>
+      <a class="top-pill" href="#rsvp">Confirm RSVP →</a>
+    </header>
 
     <section class="hero">
-      <div class="card main-card">
-        <div class="eyebrow">Boris' Goodbye Party</div>
-        <h1>One last evening together.</h1>
-        <p class="lead">
+      <div class="hero-content">
+        <div class="kicker">One last evening together.</div>
+        <h1>Boris' Goodbye Party</h1>
+        <p class="subtitle">
           Dear colleague, it was a pleasure working with you and your team.
-          Before I start my next chapter, I'd love to spend one more evening together.
-          No speeches. No formalities. Just good people, food, drinks, music and a great time.
+          Before I start my next chapter, I’d love to spend one more evening together.
         </p>
-        <div class="date-row">
-          <span class="pill magenta">Saturday, July 11, 2026</span>
-          <span class="pill">Pool House</span>
-          <span class="pill">Start 16:00</span>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#rsvp">I’ll be there →</a>
+          <a class="btn" target="_blank" rel="noopener" href="https://maps.app.goo.gl/15FCkioxfqqfFuEVA">Open map</a>
         </div>
       </div>
 
-      <aside class="side">
-        <div class="card info-card">
-          <div class="label">Location</div>
-          <p class="big">Pool House</p>
-          <p class="muted">Vagharshapat</p>
-          <a class="button" target="_blank" rel="noopener" href="https://maps.app.goo.gl/15FCkioxfqqfFuEVA">Open in Google Maps</a>
-        </div>
-        <div class="card info-card">
-          <div class="label">Mood</div>
-          <p class="big">Magenta. Dark. Summer. Pool. DJ.</p>
-          <p class="muted">Come, swim, drink, eat, dance and chill. Guests are welcome.</p>
-        </div>
-      </aside>
+      <div class="hero-object" aria-hidden="true"></div>
     </section>
 
-    <section class="agenda">
-      <div class="card agenda-item">
-        <div class="time">16:00</div>
-        <div class="agenda-title">Start at the pool</div>
-        <div class="muted">Beer, BBQ, swimming, sun and chill.</div>
+    <section class="section compact" id="details">
+      <div class="split">
+        <h2 class="big-title">
+          Come for the pool,<br>
+          stay for the <span class="italic">goodbye.</span>
+        </h2>
+
+        <p class="text">
+          No speeches. No formalities. Just good people, food, drinks, music and a great time.
+          Come, swim, drink, eat, dance and chill. Guests are welcome.
+        </p>
       </div>
-      <div class="card agenda-item">
-        <div class="time">18:30</div>
-        <div class="agenda-title">Welcome drinks</div>
-        <div class="muted">Cocktails and good mood.</div>
-      </div>
-      <div class="card agenda-item">
-        <div class="time">19:00</div>
-        <div class="agenda-title">DJ set</div>
-        <div class="muted">Music, dancing and the proper goodbye vibe.</div>
-      </div>
-      <div class="card agenda-item">
-        <div class="time">23:30</div>
-        <div class="agenda-title">Finish</div>
-        <div class="muted">One last toast and see you soon.</div>
+
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="small-label">Date</div>
+          <div class="info-title">Saturday, July 11, 2026</div>
+          <div class="text">Start at 16:00</div>
+        </div>
+
+        <div class="info-item">
+          <div class="small-label">Location</div>
+          <div class="info-title">Pool House</div>
+          <div class="text">Vagharshapat</div>
+        </div>
+
+        <div class="info-item">
+          <div class="small-label">Map</div>
+          <div class="info-title">
+            <a target="_blank" rel="noopener" href="https://maps.app.goo.gl/15FCkioxfqqfFuEVA">Open in Google Maps →</a>
+          </div>
+          <div class="text">Tap and drive.</div>
+        </div>
       </div>
     </section>
 
-    <section class="rsvp" id="rsvp">
-      <div class="card info-card">
-        <div class="label">RSVP</div>
-        <p class="big">Will you join?</p>
-        <p class="muted">Just choose yes or no, write your name and number of guests. The answer goes directly to Boris.</p>
+    <section class="agenda-band" id="agenda">
+      <div class="agenda-head">
+        <h2>Agenda</h2>
+        <div class="agenda-note">
+          Pool, BBQ, cocktails, DJ and one last toast before the next chapter.
+        </div>
       </div>
 
-      <form class="card form-card" id="rsvpForm">
-        <div class="choice-grid">
-          <label class="choice"><input type="radio" name="status" value="Coming" checked><span>Yes, I'll be there</span></label>
-          <label class="choice"><input type="radio" name="status" value="Not coming"><span>Sorry, I can't make it</span></label>
+      <div class="agenda">
+        <div class="agenda-item">
+          <div class="time">16:00</div>
+          <div class="agenda-title">Start at the pool</div>
+          <div class="agenda-text">Beer, BBQ, swimming, sun and chill.</div>
         </div>
 
-        <label class="label" for="name">Your name</label>
-        <input id="name" name="name" type="text" placeholder="Name Surname" required />
-
-        <label class="label" for="guests">Number of guests</label>
-        <input id="guests" name="guests" type="number" min="0" max="20" value="1" required />
-
-        <div class="submit-row">
-          <button type="submit" id="submitBtn">Submit RSVP</button>
-          <div id="status" class="status"></div>
+        <div class="agenda-item">
+          <div class="time">18:30</div>
+          <div class="agenda-title">Welcome drinks</div>
+          <div class="agenda-text">Cocktails and good mood.</div>
         </div>
-      </form>
+
+        <div class="agenda-item">
+          <div class="time">19:00</div>
+          <div class="agenda-title">DJ set</div>
+          <div class="agenda-text">Music, dancing and the proper goodbye vibe.</div>
+        </div>
+
+        <div class="agenda-item">
+          <div class="time">23:30</div>
+          <div class="agenda-title">Finish</div>
+          <div class="agenda-text">One last toast and see you soon.</div>
+        </div>
+      </div>
     </section>
 
-    <div class="footer">Thank you for being part of this journey. See you on July 11.</div>
+    <section class="rsvp-section" id="rsvp">
+      <div class="rsvp-layout">
+        <div>
+          <h2 class="rsvp-title">Will you join?</h2>
+          <p class="rsvp-copy">
+            Choose yes or no, write your name and number of guests.
+            Your answer goes directly to Boris.
+          </p>
+        </div>
+
+        <form id="rsvpForm">
+          <div class="choice-grid">
+            <label class="choice">
+              <input type="radio" name="status" value="Coming" checked>
+              <span>Yes, I'll be there</span>
+            </label>
+
+            <label class="choice">
+              <input type="radio" name="status" value="Not coming">
+              <span>Sorry, I can't make it</span>
+            </label>
+          </div>
+
+          <label class="field-label" for="name">Your name</label>
+          <input id="name" name="name" type="text" placeholder="Name Surname" required />
+
+          <label class="field-label" for="guests">Number of guests</label>
+          <input id="guests" name="guests" type="number" min="0" max="20" value="1" required />
+
+          <div class="submit-row">
+            <button type="submit" id="submitBtn">Submit RSVP</button>
+            <div id="status" class="status"></div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>Thank you for being part of this journey.</div>
+      <div>See you on July 11.</div>
+    </footer>
   </main>
 
   <script>
@@ -342,6 +766,7 @@
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
+
       statusEl.className = 'status';
       statusEl.textContent = 'Sending...';
       submitBtn.disabled = true;
@@ -360,8 +785,13 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         });
+
         const result = await response.json().catch(() => ({}));
-        if (!response.ok) throw new Error(result.error || 'Could not send RSVP');
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Could not send RSVP');
+        }
+
         statusEl.className = 'status ok';
         statusEl.textContent = 'Done. Thank you!';
         form.reset();
